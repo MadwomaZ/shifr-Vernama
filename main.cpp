@@ -21,12 +21,15 @@ string keygen(int len)
 
 string Vernam_encry(int len, string plTxt, string key)
 {
-    string cipTxt; //массив-приемник для зашифрованного текста
+    string cipTxt; //строка для зашифрованного текста
 
     cipTxt.resize(len);
-    //собственно само шифрование
+
+    //шифрование
     for(int i = 0; i < len; i++)
        cipTxt[i] = plTxt[i]^key[i]; //побитовое XOR
+
+    //результат работы
     cout << "Encryption:\nPlaintext text: " << plTxt << endl;
     cout << "\nKey: " << key << endl;
     cout << "\nCiphertext text: " << cipTxt << endl;
@@ -36,17 +39,18 @@ string Vernam_encry(int len, string plTxt, string key)
 
 string Vernam_decry(int len, string cipTxt, string key)
 {
-    string plTxt; //объявляем массив для открытого текста
+    string plTxt; //строка для открытого текста
 
     key.resize(len);
     cipTxt.resize(len);
     plTxt.resize(len);
-    //собственно само шифрование
+
+    //дешифрование
     for(int i = 0; i < len; i++)
        plTxt[i] = cipTxt[i]^key[i]; //побитовое XOR
-    //для наглядности выведем на экран результат работы
-    cout << "Decryption:";
-    cout << "\nCiphertext text: " << cipTxt << endl;
+
+    //результат работы
+    cout << "Decryption:\nCiphertext text: " << cipTxt << endl;
     cout << "\nKey: " << key << endl;
     cout << "\nPlaintext text: " << plTxt << endl;
 
@@ -60,11 +64,13 @@ int main()
 
     cout << "Enter you plaintext: ";
     getline(std::cin, plTxt);
+
     len = plTxt.length();// определяем длину строки открытого текста
     key = keygen(len);
-    cipherTxt = Vernam_encry(len, plTxt, key);
 
-    new_plTxt = Vernam_decry(len, cipherTxt, key);
+    cipherTxt = Vernam_encry(len, plTxt, key); //зашифрованный текст
+
+    new_plTxt = Vernam_decry(len, cipherTxt, key); //расшифрованный открытый текст
     return 0;
 }
 
