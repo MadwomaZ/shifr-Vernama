@@ -26,8 +26,7 @@ string Vernam_encry(int len, string plTxt, string key)
     cipTxt.resize(len);
     //собственно само шифрование
     for(int i = 0; i < len; i++)
-       cipTxt[i]=plTxt[i]^key[i]; //побитовое XOR
-    //для наглядности выведем на экран результат работы
+       cipTxt[i] = plTxt[i]^key[i]; //побитовое XOR
     cout << "Encryption:\nPlaintext text: " << plTxt << endl;
     cout << "\nKey: " << key << endl;
     cout << "\nCiphertext text: " << cipTxt << endl;
@@ -44,7 +43,7 @@ string Vernam_decry(int len, string cipTxt, string key)
     plTxt.resize(len);
     //собственно само шифрование
     for(int i = 0; i < len; i++)
-       cipTxt[i]=plTxt[i]^key[i]; //побитовое XOR
+       plTxt[i] = cipTxt[i]^key[i]; //побитовое XOR
     //для наглядности выведем на экран результат работы
     cout << "Decryption:";
     cout << "\nCiphertext text: " << cipTxt << endl;
@@ -53,7 +52,6 @@ string Vernam_decry(int len, string cipTxt, string key)
 
     return plTxt;
 }
-
 
 int main()
 {
